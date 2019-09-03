@@ -2,6 +2,19 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const productRoutes = require("./api/routes/products");
+const orderRoutes = require("./api/routes/orders");
+
+mongoose.connect(
+  "mongodb+srv://node-shop:" +
+    process.env.MONGO_ATLAS_PW +
+    "@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useMongoClient: true
+  }
+);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -15,9 +28,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-const productRoutes = require("./api/routes/products");
-const orderRoutes = require("./api/routes/orders");
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
