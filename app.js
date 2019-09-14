@@ -11,10 +11,10 @@ const userRoutes = require("./api/routes/user");
 mongoose.connect(
   "mongodb+srv://node-shop:" +
     process.env.MONGO_ATLAS_PW +
-    "@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority",
-  {
-    useMongoClient: true
-  }
+    "@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority"
+  // {
+  //   useMongoClient: true
+  // }
 );
 
 //mongoose.Promise = global.Promise;
