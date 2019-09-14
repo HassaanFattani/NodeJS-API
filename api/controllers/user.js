@@ -9,6 +9,7 @@ exports.user_signup = (req, res, next) => {
   })
     .exec()
     .then(user => {
+      console.log(user);
       if (user.length >= 1) {
         return res.status(409).json({
           message: "Email exists"
@@ -50,15 +51,16 @@ exports.user_login = (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
     .then(user => {
+      console.log(user);
       if (user.length < 1) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Auth failed 1"
         });
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
-            message: "Auth failed"
+            message: "Auth failed 2"
           });
         } else {
           if (result) {
@@ -67,7 +69,7 @@ exports.user_login = (req, res, next) => {
                 email: user[0].email,
                 userId: user[0]._id
               },
-              process.env.JWT_KEY,
+              "secret", //process.env.JWT_KEY,
               {
                 expiresIn: "1h"
               }
@@ -78,7 +80,7 @@ exports.user_login = (req, res, next) => {
             });
           }
           res.status(401).json({
-            message: "Auth failed"
+            message: "Auth failed 3"
           });
         }
       });
