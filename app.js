@@ -9,10 +9,9 @@ const orderRoutes = require("./api/routes/orders");
 const userRoutes = require("./api/routes/user");
 
 mongoose.connect(
-  "mongodb+srv://node-shop:node-shop@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority"
-  // "mongodb+srv://node-shop:" +
-  //   process.env.MONGO_ATLAS_PW +
-  //   "@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority"
+  "mongodb+srv://node-shop:" +
+    process.env.MONGO_ATLAS_PW +
+    "@node-rest-shop-eg6s4.mongodb.net/test?retryWrites=true&w=majority"
   // {
   //   useMongoClient: true
   // }
